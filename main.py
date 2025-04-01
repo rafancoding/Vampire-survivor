@@ -21,11 +21,13 @@ class Game:
                     self.running = False
 
             #update
-            
+
 
 
             #draw
-
+            pygame.display.update()
+game = Game()
+game.run()            
             
         
 
