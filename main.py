@@ -15,7 +15,7 @@ class Game:
         self.all_sprites = pygame.sprite.Group()
 
         #sprites
-        self.player = Player((400,300))
+        self.player = Player((400,300),self.all_sprites)
 
     def run(self):
         while self.running:

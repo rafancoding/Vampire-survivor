@@ -5,3 +5,17 @@ class Player(pygame.sprite.Sprite):
         super().__init__(groups)
         self.image = pygame.image.load("images/player/down/0.png").convert_alpha()
         self.rect = self.image.get_frect(center = pos)
+
+        #movement
+        self.direction = pygame.Vector2(1,0)
+        self.speed = 500
+
+    def input(self):
+        pass
+
+    def move(self,dt):
+        self.rect.center += self.direction * self.speed * dt
+
+    def update(self,dt):
+        self.input()
+        self.move(dt)
