@@ -19,10 +19,17 @@ class Player(pygame.sprite.Sprite):
         
     def move(self,dt):
         self.rect.x += self.direction.x * self.speed * dt
+        self.collision("horizontal")
         self.rect.y += self.direction.y * self.speed * dt
+        self.collision("vertical")
 
     def collision(self,direction):
-        pass
+        for sprite in self.collision_sprites:
+            if sprite.rect.colliderect(self.rect):
+                if direction == "horizontal":
+                    if self.direction.x > 0: self.rect.right = sprite.rect.left
+
+
 
     def update(self,dt):
         self.input()
