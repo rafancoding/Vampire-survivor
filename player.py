@@ -27,11 +27,15 @@ class Player(pygame.sprite.Sprite):
         for sprite in self.collision_sprites:
             if sprite.rect.colliderect(self.rect):
                 if direction == "horizontal":
-                    if self.direction.x > 0: self.rect.right = sprite.rect.left
-                    if self.direction.x < 0: self.rect.left = sprite.rect.right
+                    if self.direction.x > 0: 
+                        self.rect.right = sprite.rect.left
+                    if self.direction.x < 0:
+                        self.rect.left = sprite.rect.right
                 else:
-                    if self.direction.y > 0: self.rect.top = sprite.rect.bottom
-                    if self.direction.y < 0: self.rect.bottom = sprite.rect.top
+                    if self.direction.y > 0:
+                        self.rect.top = sprite.rect.bottom
+                    if self.direction.y < 0: 
+                        self.rect.bottom = sprite.rect.top
 
 
 
