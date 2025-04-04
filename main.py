@@ -2,6 +2,7 @@ from settings import *
 from player import Player
 from sprites import *
 from pytmx.util_pygame import load_pygame
+import os
 
 from random import randint
 
@@ -21,9 +22,9 @@ class Game:
         self.collision_sprites = pygame.sprite.Group()
 
     def map(self):
-        map = load_pygame("data/maps/world.tmx")
+        map = load_pygame(("data/maps/world.tmx"))
         for obj in map.get_layer_by_name("Objects"):
-            CollisiionSprites((obj.x,obj.y),obj.image,(self.all_sprites,self.collision_sprites))
+            CollisionSprites((obj.x,obj.y),obj.image(self.all_sprites,self.collision_sprites))
 
     def run(self):
         while self.running:
