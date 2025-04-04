@@ -23,7 +23,7 @@ class Game:
     def map(self):
         map = load_pygame("data/maps/world.tmx")
         for obj in map.get_layer_by_name("Objects"):
-            Objects((obj.x,obj.y),obj.image,(self.all_sprites,self.collision_sprites))
+            CollisiionSprites((obj.x,obj.y),obj.image,(self.all_sprites,self.collision_sprites))
 
     def run(self):
         while self.running:

@@ -1,6 +1,6 @@
 from settings import * 
 
-class Objects(pygame.sprite.Sprite):
+class CollisiionSprites(pygame.sprite.Sprite):
     def __init__(self,pos,surf,groups):
         super().__init__(groups)
         self.image = surf
