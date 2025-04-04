@@ -15,16 +15,24 @@ class Game:
         pygame.display.set_caption("vampire survivor")
         self.clock = pygame.time.Clock()
         self.running = True
-        self.map()
 
         #groups
         self.all_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
 
+        self.map()
+
+        #sprites
+        self.player = Player((400,300),self.all_sprites,self.collision_sprites)
+
     def map(self):
         map = load_pygame(("data/maps/world.tmx"))
         for obj in map.get_layer_by_name("Objects"):
-            CollisionSprites((obj.x,obj.y),obj.image(self.all_sprites,self.collision_sprites))
+            CollisionSprites((obj.x,obj.y),obj.image,(self.all_sprites,self.collision_sprites))
+
+        for x,y,image in map.get_layer_by_name("Ground").tiles():
+            NonCollisionSprites((x,y),image,self.all_sprites)
+       
 
     def run(self):
         while self.running:
