@@ -15,8 +15,8 @@ class Player(pygame.sprite.Sprite):
 
     def animation(self):
         self.frames = {"left":[],"right":[],"up":[],"down":[]}
-
-        print(list(walk(join("images/player"))))
+        for info in walk(join("images/player")):
+            print(info)
 
     def input(self):
         keys = pygame.key.get_pressed()
