@@ -6,7 +6,7 @@ class Player(pygame.sprite.Sprite):
         self.animation()
         self.image = pygame.image.load("images/player/down/0.png").convert_alpha()
         self.rect = self.image.get_frect(center = pos)
-        self.hitbox_rect = self.rect.inflate(-60,-90)
+        self.hitbox_rect = self.rect.inflate(-60,-60)
 
         #movement
         self.direction = pygame.Vector2()
@@ -15,10 +15,14 @@ class Player(pygame.sprite.Sprite):
 
     def animation(self):
         self.frames = {"left":[],"right":[],"up":[],"down":[]}
-        for folder_path,sub_folders,file_names in walk(join("images/player")):
-            if file_names:
-                for file_name in file_names:
-                    print(file_name) 
+        for state in self.frames.keys():
+            for folder_path,sub_folders,file_names in walk(join("images/player",state)):
+                if file_names:
+                    for file_name in file_names:
+                        full_path = join(folder_path,file_name)
+                        surf = pygame.image.load(full_path).convert_alpha()
+                        self.frames[state].append(surf)
+        print(self.frames)                 
             
 
     def input(self):
