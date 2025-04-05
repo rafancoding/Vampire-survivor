@@ -15,8 +15,11 @@ class Player(pygame.sprite.Sprite):
 
     def animation(self):
         self.frames = {"left":[],"right":[],"up":[],"down":[]}
-        for info in walk(join("images/player")):
-            print(info)
+        for folder_path,sub_folders,file_names in walk(join("images/player")):
+            if file_names:
+                for file_name in file_names:
+                    print(file_name) 
+            
 
     def input(self):
         keys = pygame.key.get_pressed()
