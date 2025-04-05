@@ -4,8 +4,6 @@ from sprites import *
 from pytmx.util_pygame import load_pygame
 from groups import AllSprites
 
-from random import randint
-
 #literal game
 class Game:
     def __init__(self):
