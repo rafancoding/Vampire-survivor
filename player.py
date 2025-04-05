@@ -4,33 +4,35 @@ class Player(pygame.sprite.Sprite):
     def __init__(self,pos,groups,collision_sprites):
         super().__init__(groups)
         self.animation()
+        self.state,self.frame_index  = "down",0
         self.image = pygame.image.load("images/player/down/0.png").convert_alpha()
         self.rect = self.image.get_frect(center = pos)
         self.hitbox_rect = self.rect.inflate(-60,-60)
 
-        #movement
+        #movement variables
         self.direction = pygame.Vector2()
         self.speed = 500
         self.collision_sprites = collision_sprites
 
+#frames
     def animation(self):
         self.frames = {"left":[],"right":[],"up":[],"down":[]}
         for state in self.frames.keys():
             for folder_path,sub_folders,file_names in walk(join("images/player",state)):
                 if file_names:
-                    for file_name in file_names:
+                    for file_name in sorted(file_names,key = lambda name: int(name.split(".")[0])):
                         full_path = join(folder_path,file_name)
                         surf = pygame.image.load(full_path).convert_alpha()
-                        self.frames[state].append(surf)
-        print(self.frames)                 
-            
+                        self.frames[state].append(surf)            
 
+#keys
     def input(self):
         keys = pygame.key.get_pressed()
         self.direction.x = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
         self.direction.y = int(keys[pygame.K_DOWN]) - int(keys[pygame.K_UP])
         self.direction = self.direction.normalize() if self.direction else self.direction    
-        
+
+#movement        
     def move(self,dt):
         self.hitbox_rect.x += self.direction.x * self.speed * dt
         self.collision("horizontal")
@@ -38,6 +40,7 @@ class Player(pygame.sprite.Sprite):
         self.collision("vertical")
         self.rect.center = self.hitbox_rect.center
 
+#collisions
     def collision(self,direction):
         for sprite in self.collision_sprites:
             if sprite.rect.colliderect(self.hitbox_rect):
@@ -48,6 +51,16 @@ class Player(pygame.sprite.Sprite):
                     if self.direction.y < 0: self.hitbox_rect.top = sprite.rect.bottom
                     if self.direction.y > 0: self.hitbox_rect.bottom = sprite.rect.top 
 
+#animation
+    def animate(self,dt):
+        #get state
+
+        #animate
+        self.frame_index += 5 * dt
+        self.image = self.frames[self.state][int(self.frame_index) % len(self.frames[self.state])]
+
+#updating
     def update(self,dt):
         self.input()
         self.move(dt)
+        self.animation(dt)

@@ -18,19 +18,25 @@ class Game:
         self.all_sprites = AllSprites()
         self.collision_sprites = pygame.sprite.Group()
 
+        #the map
         self.map()
 
+    #map setup
     def map(self):
         map = load_pygame(("data/maps/world.tmx"))
+        #importing ground
         for x,y,image in map.get_layer_by_name("Ground").tiles():
             NonCollisionSprites((x * TILE_SIZE,y * TILE_SIZE),image,self.all_sprites)
-   
+
+        #importing objects
         for obj in map.get_layer_by_name("Objects"):
             CollisionSprites((obj.x,obj.y),obj.image,(self.all_sprites,self.collision_sprites))
 
+        #importing collisions
         for obj in map.get_layer_by_name("Collisions"):
             CollisionSprites((obj.x,obj.y),pygame.Surface((obj.width,obj.height)),self.collision_sprites)
 
+        #importing entities
         for obj in map.get_layer_by_name("Entities"):
             if obj.name == "Player":
                 self.player = Player((obj.x,obj.y),self.all_sprites,self.collision_sprites)
