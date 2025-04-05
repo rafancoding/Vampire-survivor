@@ -5,12 +5,17 @@ class Player(pygame.sprite.Sprite):
         super().__init__(groups)
         self.image = pygame.image.load("images/player/down/0.png").convert_alpha()
         self.rect = self.image.get_frect(center = pos)
-        self.hitbox_rect = self.rect.inflate(-60,0)
+        self.hitbox_rect = self.rect.inflate(-60,-90)
 
         #movement
         self.direction = pygame.Vector2()
         self.speed = 500
         self.collision_sprites = collision_sprites
+
+    def animation(self):
+        self.frames = {"left":[],"right":[],"up":[],"down":[]}
+
+        print(walk(join("images/player")))
 
     def input(self):
         keys = pygame.key.get_pressed()
