@@ -18,13 +18,26 @@ class Game:
         self.all_sprites = AllSprites()
         self.collision_sprites = pygame.sprite.Group()
 
+        #gun timer
+        self.can_shoot = True
+        self.shoot_time = 0
+        self.gun_cooldown = 100
+
         #the map
         self.map()
 
+    #gun input
     def input(self):
-        if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pressed()[0] and self.can_shoot:
             print("hello")
+            self.can_shoot = False
+            self.shoot_time = pygame.time.get_ticks()
 
+    def gun_timer(self):
+        if not self.can_shoot:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.shoot_time >= 0:
+                self.can_shoot = True
 
     #map setup
     def map(self):
@@ -60,6 +73,7 @@ class Game:
 
             #update
             self.input()
+            self.gun_timer()
             self.all_sprites.update(dt)
 
             #draw
