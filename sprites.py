@@ -31,9 +31,10 @@ class Gun(pygame.sprite.Sprite):
     
     #getting direction
     def get_direction(self):
-        mouse_pos = pygame.Vector2(pygame.mouse.get_pos())
-        player_pos = pygame.Vector2(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
-        self.player_direction = (mouse_pos - player_pos).normalize()
+        self.mouse_pos = pygame.Vector2(pygame.mouse.get_pos())
+        self.player_pos = pygame.Vector2(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
+        self.player_direction = (self.mouse_pos - self.player_pos).normalize()
+        print(self.player_direction)
 
     #update
     def update(self,_):
