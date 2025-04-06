@@ -19,7 +19,6 @@ class CollisionSprites(pygame.sprite.Sprite):
 class Gun(pygame.sprite.Sprite):
     def __init__(self,player,groups):
         #connection to player
-        self.get_direction
         self.player = player
         self.distance = 140
         self.player_direction = pygame.Vector2(0,1)
@@ -38,6 +37,7 @@ class Gun(pygame.sprite.Sprite):
         print(self.player_direction)
 
     #update
-    def update(self,_):  
+    def update(self,_):
+        self.get_direction()  
         self.rect.center = self.player.rect.center + self.player_direction * self.distance 
 
