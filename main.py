@@ -4,6 +4,8 @@ from sprites import *
 from pytmx.util_pygame import load_pygame
 from groups import AllSprites
 
+from random import randint
+
 #literal game
 class Game:
     def __init__(self):
@@ -28,6 +30,7 @@ class Game:
         #the map
         self.map()
 
+    #images
     def load_images(self):
         self.bullet_surf = pygame.image.load("images/gun/bullet.png").convert_alpha()
 
@@ -65,6 +68,10 @@ class Game:
             if obj.name == "Player":
                 self.player = Player((obj.x,obj.y),self.all_sprites,self.collision_sprites)
                 self.gun = Gun(self.player,self.all_sprites)
+            #else:
+                #if obj.name == "Enemy":
+
+
     #when the game starts  
     def run(self):
         while self.running:

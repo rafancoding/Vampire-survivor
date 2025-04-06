@@ -50,7 +50,7 @@ class Gun(pygame.sprite.Sprite):
         self.rotate_gun()  
         self.rect.center = self.player.rect.center + self.player_direction * self.distance 
 
-#the bullet
+#the bullets
 class Bullet(pygame.sprite.Sprite):
     def __init__(self,surf,pos,direction,groups):
         super().__init__(groups)
@@ -69,4 +69,16 @@ class Bullet(pygame.sprite.Sprite):
 
         if pygame.time.get_ticks() - self.spawn_time >= self.lifetime:
             self.kill()
+
+#enemies
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self,groups):
+        super().__init__(groups)
+        self.bat_image = pygame.image.load("images/enemies/bat/0.png") 
+        self.blob_image = pygame.image.load("images/enemies/blob/0.png")
+        self.skeleton_image = pygame.image.load("images/enemies/skeleton/0.png")
+
+        self.enemy_timer = pygame.time.get_ticks()
+        print(self.enemy_timer)
+
 
