@@ -60,10 +60,9 @@ class Player(pygame.sprite.Sprite):
         if self.direction.y != 0:
             self.state = "down" if self.direction.y > 0 else "up"    
 
-
         #animate
         self.frame_index += self.frame_index + 5 * dt if self.direction else 0
-        self.image = self.frames[self.state][int(self.frame_index) % len(self.frames[self.state])]
+        self.image = self.frames[self.state][float(self.frame_index) % len(self.frames[self.state])]
 
 #updating
     def update(self,dt):
