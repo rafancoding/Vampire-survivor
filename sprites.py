@@ -37,7 +37,7 @@ class Gun(pygame.sprite.Sprite):
         self.player_direction = (mouse_pos - player_pos).normalize()
 
     def rotate_gun(self):
-        angle =  degrees(atan2(self.player_direction.x,self.player_direction.y))
+        angle =  degrees(atan2(self.player_direction.x,self.player_direction.y)) - 90
         self.image = pygame.transform.rotozoom(self.gun_surf,angle,1)
 
     #update
