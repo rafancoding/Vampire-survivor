@@ -42,7 +42,7 @@ class Gun(pygame.sprite.Sprite):
             self.image = pygame.transform.rotozoom(self.gun_surf,angle,1)
         else:
             self.image = pygame.transform.rotozoom(self.gun_surf,abs(angle),1)
-            self.image = pygame.transform.flip(self.image,False,True)    
+            self.image = pygame.transform.flip(self.image,False,True)
 
     #update
     def update(self,_):

@@ -21,6 +21,11 @@ class Game:
         #the map
         self.map()
 
+    def input(self):
+        if pygame.mouse.get_pressed()[0]:
+            print("hello")
+
+
     #map setup
     def map(self):
         map = load_pygame(("data/maps/world.tmx"))
@@ -41,7 +46,7 @@ class Game:
             if obj.name == "Player":
                 self.player = Player((obj.x,obj.y),self.all_sprites,self.collision_sprites)
                 self.gun = Gun(self.player,self.all_sprites)
-      
+    #when the game starts  
     def run(self):
         while self.running:
 
@@ -62,6 +67,8 @@ class Game:
             pygame.display.update()
 
         pygame.quit()
+
+
 
 if __name__ == "__main__":            
     game = Game()     
