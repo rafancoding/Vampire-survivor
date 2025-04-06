@@ -1,5 +1,6 @@
 from settings import *
 
+#player class
 class Player(pygame.sprite.Sprite):
     def __init__(self,pos,groups,collision_sprites):
         super().__init__(groups)
@@ -57,7 +58,7 @@ class Player(pygame.sprite.Sprite):
         if self.direction.x != 0:
             self.state = "right" if self.direction.x > 0 else self.state = "left"
         if self.direction.y != 0:
-            self.state = "down" if self.direction.x > 0 else self.state = "up"    
+            self.state = "down" if self.direction.y > 0 else self.state = "up"    
 
 
         #animate
