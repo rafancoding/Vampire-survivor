@@ -23,7 +23,7 @@ class Game:
         #gun timer
         self.can_shoot = True
         self.shoot_time = 0
-        self.gun_cooldown = 100
+        self.gun_cooldown = 600
 
         #the map
         self.map()
