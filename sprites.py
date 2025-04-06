@@ -60,6 +60,13 @@ class Bullet(pygame.sprite.Sprite):
         self.direction = direction
         self.speed = 1200
 
+        self.spawn_time = pygame.time.get_ticks()
+        self.lifetime = 1000
+
+
     def update(self,dt):
         self.rect.center += self.direction * self.speed * dt
+
+        if pygame.time.get_ticks() - self.spawn_time >= self.lifetime:
+            self.kill()
 
