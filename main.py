@@ -23,7 +23,7 @@ class Game:
         #gun timer
         self.can_shoot = True
         self.shoot_time = 0
-        self.gun_cooldown = 1000
+        self.gun_cooldown = 100
 
         #the map
         self.map()
@@ -42,7 +42,7 @@ class Game:
     def gun_timer(self):
         if not self.can_shoot:
             current_time = pygame.time.get_ticks()
-            if current_time - self.shoot_time > 0:
+            if current_time - self.shoot_time >= self.gun_cooldown:
                 self.can_shoot = True
 
     #map setup
