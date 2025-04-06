@@ -56,9 +56,9 @@ class Player(pygame.sprite.Sprite):
     def animate(self,dt):
         #get state
         if self.direction.x != 0:
-            self.state = "right" if self.direction.x > 0 else self.state = "left"
+            self.state = "right" if self.direction.x > 0 else "left"
         if self.direction.y != 0:
-            self.state = "down" if self.direction.y > 0 else self.state = "up"    
+            self.state = "down" if self.direction.y > 0 else "up"    
 
 
         #animate
