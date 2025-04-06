@@ -27,3 +27,6 @@ class Gun(pygame.sprite.Sprite):
         self.image = self.gun_surf
         self.rect = self.image.get_frect(center = self.player.rect.center + self.player_direction * self.distance)
 
+        def update(self,_):
+            self.rect.center = self.player.rect.center + self.player_direction * self.distance 
+
