@@ -72,8 +72,8 @@ class Game:
                     self.running = False
 
             #update
-            self.input()
             self.gun_timer()
+            self.input()
             self.all_sprites.update(dt)
 
             #draw
