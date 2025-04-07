@@ -68,8 +68,11 @@ class Game:
             if obj.name == "Player":
                 self.player = Player((obj.x,obj.y),self.all_sprites,self.collision_sprites)
                 self.gun = Gun(self.player,self.all_sprites)
-            #else:
-                #if obj.name == "Enemy":
+            else:
+                if obj.name == "Enemy":
+                    if pygame.time.get_ticks - self.enemy_timer >= 0:
+                        print("hello")
+                        #Enemy(self.all_sprites,self.collision_sprites) 
 
 
     #when the game starts  
