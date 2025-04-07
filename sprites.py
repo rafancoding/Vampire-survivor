@@ -104,9 +104,9 @@ class Enemy(pygame.sprite.Sprite):
         self.direction = (player_pos - enemy_pos).normalize()
 
         #update rect + collison logic
-        self.rect.x += self.direction.x * self.speed * dt
+        self.hitbox_rect.x += self.direction.x * self.speed * dt
         self.collisions("horizontal")
-        self.rect.y += self.direction.y * self.speed * dt
+        self.hitbox_rect.y += self.direction.y * self.speed * dt
         self.collisions("vertical")
 
     def collisions(self,direction):
