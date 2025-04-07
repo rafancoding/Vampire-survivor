@@ -108,6 +108,7 @@ class Enemy(pygame.sprite.Sprite):
         self.collisions("horizontal")
         self.hitbox_rect.y += self.direction.y * self.speed * dt
         self.collisions("vertical")
+        self.rect.center = self.hitbox_rect.center
 
     def collisions(self,direction):
         for sprite in self.collision_sprites:
