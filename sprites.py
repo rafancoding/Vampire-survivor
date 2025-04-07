@@ -79,7 +79,7 @@ class Enemy(pygame.sprite.Sprite):
         #image variables
         self.frames = frames
         self.frame_index = 0
-        self.images = self.frames[self.frame_index]
+        self.image = self.frames[self.frame_index]
         self.animation_speed = 6
 
         #rects
