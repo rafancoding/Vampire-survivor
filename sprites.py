@@ -100,7 +100,7 @@ class Enemy(pygame.sprite.Sprite):
 
 
     def update(self,dt):
-        self.move(dt)
+        #self.move(dt)
         self.animate(dt)
 
             
