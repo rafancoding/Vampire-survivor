@@ -30,6 +30,13 @@ class Game:
         #the map
         self.map()
 
+        #enemy timer
+        self.enemy_timer = pygame.event.custom_type()
+        pygame.time.set_timer(self.enemy_timer,300)
+
+        #spawn pos(enemies)
+        self.spawn_pos = []
+
     #images
     def load_images(self):
         self.bullet_surf = pygame.image.load("images/gun/bullet.png").convert_alpha()
@@ -42,6 +49,7 @@ class Game:
             self.can_shoot = False
             self.shoot_time = pygame.time.get_ticks()
 
+    #gun timer
     def gun_timer(self):
         if not self.can_shoot:
             current_time = pygame.time.get_ticks()
@@ -69,12 +77,7 @@ class Game:
                 self.player = Player((obj.x,obj.y),self.all_sprites,self.collision_sprites)
                 self.gun = Gun(self.player,self.all_sprites)
             else:
-                if obj.name == "Enemy":
-                    self.enemy_timer =  pygame.time.get_ticks()
-                    if pygame.time.get_ticks - self.enemy_timer >= 0:
-                        print("hello")
-                        #Enemy(self.all_sprites,self.collision_sprites) 
-
+                self.spawn_pos.append((obj.x,obj.y))
 
     #when the game starts  
     def run(self):
@@ -87,6 +90,8 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                if event.type == self.enemy_timer:
+                    print("hello")   
 
             #update
             self.gun_timer()

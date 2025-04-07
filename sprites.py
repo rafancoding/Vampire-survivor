@@ -72,11 +72,32 @@ class Bullet(pygame.sprite.Sprite):
 
 #enemies
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self,groups):
+    def __init__(self,groups,pos,frames,collision_sprites,player):
         super().__init__(groups)
-        self.bat_image = pygame.image.load("images/enemies/bat/0.png") 
-        self.blob_image = pygame.image.load("images/enemies/blob/0.png")
-        self.skeleton_image = pygame.image.load("images/enemies/skeleton/0.png")
+        self.player = player
+
+        #bat
+
+        #image variables
+        self.frames = frames
+        self.frame_index = 0
+        self.bat_images = self.frames[self.frame_index]
+        self.animation_speed = 6
+
+        #rects
+        self.bat_rect = self.bat_images.get_frect(center = pos)
+        self.bat_hitbox = self.rect.inflate(-20,-40)
+
+        #other
+
+        #collision sprites
+        self.collision_sprites = collision_sprites
+
+        #movement variables
+        self.direction = pygame.Vector2()
+        self.speed = 350
+
+
 
         
 
