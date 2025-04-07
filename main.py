@@ -29,7 +29,7 @@ class Game:
 
         #enemy timer
         self.enemy_timer = pygame.event.custom_type()
-        pygame.time.set_timer(self.enemy_timer,300)
+        pygame.time.set_timer(self.enemy_timer,1)
 
         #spawn pos(enemies)
         self.spawn_positions = []
