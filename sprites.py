@@ -95,7 +95,7 @@ class Enemy(pygame.sprite.Sprite):
     
     def animate(self,dt):
         self.frame_index += self.animation_speed * dt
-        self.image = self.frames[int[self.frame_index] % len(self.frames)]
+        self.image = self.frames[int(self.frame_index) % len(self.frames)]
 
 
 
