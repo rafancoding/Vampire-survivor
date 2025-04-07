@@ -76,19 +76,15 @@ class Enemy(pygame.sprite.Sprite):
         super().__init__(groups)
         self.player = player
 
-        #bat
-
         #image variables
         self.frames = frames
         self.frame_index = 0
-        self.bat_images = self.frames[self.frame_index]
+        self.image = self.frames[self.frame_index]
         self.animation_speed = 6
 
         #rects
-        self.bat_rect = self.bat_images.get_frect(center = pos)
-        self.bat_hitbox = self.rect.inflate(-20,-40)
-
-        #other
+        self.bat = self.image.get_frect(center = pos)
+        self.bat = self.rect.inflate(-20,-40)
 
         #collision sprites
         self.collision_sprites = collision_sprites
