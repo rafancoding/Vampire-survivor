@@ -70,6 +70,7 @@ class Game:
                 self.gun = Gun(self.player,self.all_sprites)
             else:
                 if obj.name == "Enemy":
+                    self.enemy_timer =  pygame.time.get_ticks()
                     if pygame.time.get_ticks - self.enemy_timer >= 0:
                         print("hello")
                         #Enemy(self.all_sprites,self.collision_sprites) 

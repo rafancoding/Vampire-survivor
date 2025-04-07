@@ -78,8 +78,6 @@ class Enemy(pygame.sprite.Sprite):
         self.blob_image = pygame.image.load("images/enemies/blob/0.png")
         self.skeleton_image = pygame.image.load("images/enemies/skeleton/0.png")
 
-    def update(self):
-        self.enemy_timer = pygame.time.get_ticks()
         
 
 
