@@ -84,7 +84,7 @@ class Enemy(pygame.sprite.Sprite):
 
         #rects
         self.rect = self.image.get_frect(center = pos)
-        self.image = self.rect.inflate(-20,-40)
+        self.hitbox = self.rect.inflate(-20,-40)
 
         #collision sprites
         self.collision_sprites = collision_sprites
