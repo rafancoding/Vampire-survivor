@@ -15,7 +15,6 @@ class Game:
         pygame.display.set_caption("vampire survivor")
         self.clock = pygame.time.Clock()
         self.running = True
-        self.load_images()
 
         #groups
         self.all_sprites = AllSprites()
@@ -27,15 +26,16 @@ class Game:
         self.shoot_time = 0
         self.gun_cooldown = 100
 
-        #the map
-        self.map()
-
         #enemy timer
         self.enemy_timer = pygame.event.custom_type()
         pygame.time.set_timer(self.enemy_timer,300)
 
         #spawn pos(enemies)
-        self.spawn_pos = []
+        self.spawn_positions = []
+
+        #calling on subs
+        self.load_images()
+        self.map()
 
     #images
     def load_images(self):
@@ -77,7 +77,7 @@ class Game:
                 self.player = Player((obj.x,obj.y),self.all_sprites,self.collision_sprites)
                 self.gun = Gun(self.player,self.all_sprites)
             else:
-                self.spawn_pos.append((obj.x,obj.y))
+                self.spawn_positions.append((obj.x,obj.y))
 
     #when the game starts  
     def run(self):
