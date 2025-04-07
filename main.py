@@ -4,7 +4,7 @@ from sprites import *
 from pytmx.util_pygame import load_pygame
 from groups import AllSprites
 
-from random import randint
+from random import randint,choice
 
 #literal game
 class Game:
@@ -20,6 +20,7 @@ class Game:
         self.all_sprites = AllSprites()
         self.collision_sprites = pygame.sprite.Group()
         self.bullet_sprites = pygame.sprite.Group()
+        self.enemy_sprites = pygame.sprite.Group()
 
         #gun timer
         self.can_shoot = True
@@ -40,6 +41,20 @@ class Game:
     #images
     def load_images(self):
         self.bullet_surf = pygame.image.load("images/gun/bullet.png").convert_alpha()
+
+        #enemy frames
+        folders =  list(walk(join("images/enemies")))[0][1]
+        self.enemy_frames = {}
+        for folder in folders:
+            for folder_path,_,file_names in walk(join("images/enemies",folder)):
+                self.enemy_frames[folder] = []
+                for file_name in sorted(file_names,key = lambda name: int(name.split(".")[0])):
+                    full_path = join(folder_path,file_name)
+                    surf = pygame.image.load(full_path).convert_alpha()
+                    self.enemy_frames[folder].append(surf)
+        print(self.enemy_frames)
+
+
 
     #gun input
     def input(self):
@@ -91,7 +106,8 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
                 if event.type == self.enemy_timer:
-                    print("hello")   
+                    Enemy(choice(self.spawn_positions),frames,(self.all_sprites,self.enemy_sprites),self.player,self.collision_sprites)
+                    #Enemy((self.all_sprites,self.enemy_sprites),choice(self.spawn_positions),frames,self.collision_sprites,self.player)  
 
             #update
             self.gun_timer()
