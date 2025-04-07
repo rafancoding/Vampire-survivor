@@ -103,8 +103,8 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
                 if event.type == self.enemy_timer:
-                    Enemy(choice(self.spawn_positions),self.enemy_frames,(self.all_sprites,self.enemy_sprites),self.player,self.collision_sprites)
-                    #Enemy((self.all_sprites,self.enemy_sprites),choice(self.spawn_positions),self.enemy_frames,self.collision_sprites,self.player)  
+                    #Enemy(choice(self.spawn_positions),self.enemy_frames,(self.all_sprites,self.enemy_sprites),self.player,self.collision_sprites)
+                    Enemy((self.all_sprites,self.enemy_sprites),choice(self.spawn_positions),self.enemy_frames,self.collision_sprites,self.player)  
 
             #update
             self.gun_timer()
