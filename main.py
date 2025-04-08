@@ -86,6 +86,7 @@ class Game:
                         self.impact_sound.play()
                     bullet.kill()    
 
+    #player collisions
     def player_collisions(self):
         if pygame.sprite.spritecollide(self.player,self.enemy_sprites,True,pygame.sprite.collide_mask):
             self.running = False     
