@@ -92,6 +92,10 @@ class Enemy(pygame.sprite.Sprite):
         #movement variables
         self.direction = pygame.Vector2()
         self.speed = 350
+
+        #timer
+        self.death_time = 0
+        self.death_duration = 400
     
     def animate(self,dt):
         self.frame_index += self.animation_speed * dt
@@ -122,15 +126,15 @@ class Enemy(pygame.sprite.Sprite):
 
     def destroy(self):
         #start timer
+        self.death_time = pygame.time.get_ticks()
         #change image
         surf = pygame.mask.from_surface(self.frames[0]).to_surface()
         self.image = surf                
 
-
-
     def update(self,dt):
-        self.move(dt)
-        self.animate(dt)
+        if self.death_time == 0:
+            self.move(dt)
+            self.animate(dt)
 
             
 

@@ -35,10 +35,10 @@ class Game:
         self.spawn_positions = []
 
         #audio imports
-        impact_sound = pygame.mixer.Sound("audio/impact.ogg")
+        #impact_sound = pygame.mixer.Sound("audio/impact.ogg")
         music_sound = pygame.mixer.Sound("audio/music.wav")
         music_sound.play(loops = -1)
-        shoot_sound = pygame.mixer.Sound("audio,shoot.wav")
+        #shoot_sound = pygame.mixer.Sound("audio,shoot.wav")
 
         #calling on subs
         self.load_images()
@@ -79,9 +79,9 @@ class Game:
         if self.bullet_sprites:
             for bullet in self.bullet_sprites:
                 collided_sprites = pygame.sprite.spritecollide(bullet,self.enemy_sprites,True,pygame.sprite.collide_mask)
-                if collided_sprites:
-                    for sprite in collided_sprites:
-                        sprite.destroy()
+                #if collided_sprites:
+                    #for sprite in collided_sprites:
+                        #sprite.destroy()
                     
     #map setup
     def map(self):
