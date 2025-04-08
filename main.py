@@ -35,10 +35,10 @@ class Game:
         self.spawn_positions = []
 
         #audio imports
-        #impact_sound = pygame.mixer.Sound("audio/impact.ogg")
+        self.impact_sound = pygame.mixer.Sound("audio/impact.ogg")
         music_sound = pygame.mixer.Sound("audio/music.wav")
         music_sound.play(loops = -1)
-        #shoot_sound = pygame.mixer.Sound("audio,shoot.wav")
+        self.shoot_sound = pygame.mixer.Sound("audio,shoot.wav")
 
         #calling on subs
         self.load_images()
@@ -64,6 +64,7 @@ class Game:
         if pygame.mouse.get_pressed()[0] and self.can_shoot:
             pos = self.gun.rect.center + self.gun.player_direction * 50
             Bullet(self.bullet_surf,pos,self.gun.player_direction,(self.all_sprites,self.bullet_sprites))
+            self.shoot_sound.play()
             self.can_shoot = False
             self.shoot_time = pygame.time.get_ticks()
 
@@ -82,6 +83,7 @@ class Game:
                 if collision_sprites:
                     for sprite in collision_sprites:
                         sprite.destroy()
+                        self.impact_sound.play()
                     bullet.kill()    
                     
     #map setup
@@ -133,8 +135,6 @@ class Game:
             pygame.display.update()
 
         pygame.quit()
-
-
 
 if __name__ == "__main__":            
     game = Game()     
