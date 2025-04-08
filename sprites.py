@@ -120,6 +120,12 @@ class Enemy(pygame.sprite.Sprite):
                     if self.direction.y < 0: self.hitbox_rect.top = sprite.rect.bottom
                     if self.direction.y > 0: self.hitbox_rect.bottom = sprite.rect.top
 
+    def destroy(self):
+        #start timer
+        #change image
+        surf = pygame.mask.from_surface(self.frames[0]).to_surface()
+        self.image = surf                
+
 
 
     def update(self,dt):
