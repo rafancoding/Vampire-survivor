@@ -79,9 +79,9 @@ class Game:
         if self.bullet_sprites:
             for bullet in self.bullet_sprites:
                 collided_sprites = pygame.sprite.spritecollide(bullet,self.enemy_sprites,True,pygame.sprite.collide_mask)
-                #if collided_sprites:
-                    #for sprite in collided_sprites:
-                        #sprite.destroy()
+                if collided_sprites:
+                    for sprite in collided_sprites:
+                        sprite.destroy()
                     
     #map setup
     def map(self):
