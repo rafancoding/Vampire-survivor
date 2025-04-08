@@ -63,7 +63,6 @@ class Bullet(pygame.sprite.Sprite):
         self.spawn_time = pygame.time.get_ticks()
         self.lifetime = 1000
 
-
     def update(self,dt):
         self.rect.center += self.direction * self.speed * dt
 
@@ -130,12 +129,18 @@ class Enemy(pygame.sprite.Sprite):
         #change image
         surf = pygame.mask.from_surface(self.frames[0]).to_surface()
         surf.set_colorkey("black")
-        self.image = surf                
+        self.image = surf
 
+    def death_timer(self):
+        if pygame.time.get_ticks() - self.death_time >= self.death_duration:
+            self.kill()
+                        
     def update(self,dt):
         if self.death_time == 0:
             self.move(dt)
             self.animate(dt)
+        else:
+            self.death_timer()    
 
             
 
